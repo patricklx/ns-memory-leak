@@ -23,10 +23,14 @@ function createViewModel() {
         viewModel.set("message", 'running test...');
         let test = new Test();
         global.te = test;
-        test.run();
+
+        const inter = setInterval(() => {
+            const val = test.getValue();
+        });
+
         setTimeout(function () {
             viewModel.set("message", 'click to start');
-            test.stop();
+            clearInterval(inter);
             delete global.te;
             test = null;
         }, 30 * 1000);

@@ -1,8 +1,9 @@
 package my.Test;
 
 public class Test {
-    private java.util.Timer timer = new java.util.Timer();
+    private java.util.Timer timer;
     public void run() {
+        timer = new java.util.Timer();
         Test test = this;
         java.util.TimerTask task = new java.util.TimerTask() {
             @Override

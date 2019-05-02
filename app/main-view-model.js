@@ -14,9 +14,6 @@ const Test = my.Test.Test.extend({
     }
 });
 
-const test = new Test();
-global.te = test;
-
 
 function createViewModel() {
     const viewModel = new Observable();
@@ -24,10 +21,14 @@ function createViewModel() {
 
     viewModel.onTap = () => {
         viewModel.set("message", 'running test...');
+        let test = new Test();
+        global.te = test;
         test.run();
         setTimeout(function () {
             viewModel.set("message", 'click to start');
             test.stop();
+            delete global.te;
+            test = null;
         }, 30 * 1000);
     };
 

@@ -8,14 +8,27 @@ function getMessage(counter) {
     }
 }
 
+const Test = my.Test.Test.extend({
+    invoke() {
+        const val = this.getValue();
+    }
+});
+
+const test = new Test();
+global.te = test;
+
+
 function createViewModel() {
     const viewModel = new Observable();
-    viewModel.counter = 42;
-    viewModel.message = getMessage(viewModel.counter);
+    viewModel.message = 'click to start';
 
     viewModel.onTap = () => {
-        viewModel.counter--;
-        viewModel.set("message", getMessage(viewModel.counter));
+        viewModel.set("message", 'running test...');
+        test.run();
+        setTimeout(function () {
+            viewModel.set("message", 'click to start');
+            test.stop();
+        }, 30 * 1000);
     };
 
     return viewModel;

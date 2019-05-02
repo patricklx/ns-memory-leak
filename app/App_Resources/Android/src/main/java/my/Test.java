@@ -13,6 +13,10 @@ public class Test {
         timer.scheduleAtFixedRate(task, 0, 5);
     }
 
+    public void stop() {
+        timer.cancel();
+    }
+
     public void invoke() {
 
     }

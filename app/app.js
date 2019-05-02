@@ -6,15 +6,6 @@ purpose of the file is to pass control to the app’s first module.
 
 const application = require("tns-core-modules/application");
 
-const Test = my.Test.Test.extend({
-    invoke() {
-        const val = this.getValue();
-    }
-});
-
-const test = new Test();
-test.run();
-
 application.run({ moduleName: "app-root" });
 
 /*

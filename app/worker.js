@@ -14,6 +14,8 @@ function valueFromPointerNumber(type, value) {
     return ref.value;
 }
 
+const utils = require('tns-core-modules/utils/utils');
 onmessage = function(msg) {
     const dict = NSDictionary.dictionaryWithObjectForKey("value", "key".repeat(1000));
+    utils.releaseNativeObject(dict);
 };

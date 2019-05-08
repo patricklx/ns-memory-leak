@@ -1,4 +1,5 @@
 const Observable = require("tns-core-modules/data/observable").Observable;
+const utils = require('tns-core-modules/utils/utils');
 
 function getMessage(counter) {
     if (counter <= 0) {
@@ -19,12 +20,9 @@ function createViewModel() {
     viewModel.onTap = () => {
         viewModel.set("message", 'running...');
         const inter = setInterval(() => {
-            var nativeDict = NSDictionary.dictionaryWithObjectForKey("value", "key".repeat(1000));
             var message = {
-                value: { dictionaryPtr: interop.handleof(nativeDict).toNumber() }
+                value: {  }
             };
-// increase reference count to account for `dictionaryPtr`
-            nativeDict.retain();
             worker.postMessage(message);
         });
 

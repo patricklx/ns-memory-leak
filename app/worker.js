@@ -14,9 +14,6 @@ function valueFromPointerNumber(type, value) {
     return ref.value;
 }
 
-
 onmessage = function(msg) {
-    var dict = valueFromPointerNumber(NSDictionary, msg.data.value.dictionaryPtr);
-    // decrease reference count
-    dict.release();
+    const dict = NSDictionary.dictionaryWithObjectForKey("value", "key".repeat(1000));
 };

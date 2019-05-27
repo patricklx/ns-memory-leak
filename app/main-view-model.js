@@ -20,10 +20,7 @@ function createViewModel() {
     viewModel.onTap = () => {
         viewModel.set("message", 'running...');
         const inter = setInterval(() => {
-            var message = {
-                value: {  }
-            };
-            worker.postMessage(message);
+            NSNotificationCenter.defaultCenter.postNotificationNameObjectUserInfo('send-to-worker', {}, null);
         });
 
         setTimeout(() => {

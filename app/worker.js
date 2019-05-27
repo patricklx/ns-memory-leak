@@ -14,8 +14,15 @@ function valueFromPointerNumber(type, value) {
     return ref.value;
 }
 
-const utils = require('tns-core-modules/utils/utils');
+
+NSNotificationCenter.defaultCenter.addObserverForNameObjectQueueUsingBlock('send-to-worker', null, null, (obj) => {
+
+});
+require('globals');
+setTimeout(() => {
+   close();
+}, 10 * 1000);
+
 onmessage = function(msg) {
-    const dict = NSDictionary.dictionaryWithObjectForKey("value", "key".repeat(1000));
-    utils.releaseNativeObject(dict);
 };
+

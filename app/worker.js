@@ -23,7 +23,7 @@ const  u = require('tns-core-modules/utils/utils');
 setTimeout(() => {
     console.log('closing');
     NSNotificationCenter.defaultCenter.removeObserver(o);
-    u.releaseNativeObject(o);
+    //u.releaseNativeObject(o); // crashes without this
     close();
 }, 10 * 1000);
 

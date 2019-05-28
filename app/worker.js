@@ -15,13 +15,18 @@ function valueFromPointerNumber(type, value) {
 }
 
 
-NSNotificationCenter.defaultCenter.addObserverForNameObjectQueueUsingBlock('send-to-worker', null, null, (obj) => {
+let o = NSNotificationCenter.defaultCenter.addObserverForNameObjectQueueUsingBlock('send-to-worker', null, null, (obj) => {
 
 });
 require('globals');
+const  u = require('tns-core-modules/utils/utils');
 setTimeout(() => {
-   close();
+    console.log('closing');
+    NSNotificationCenter.defaultCenter.removeObserver(o);
+    u.releaseNativeObject(o);
+    close();
 }, 10 * 1000);
+
 
 onmessage = function(msg) {
 };

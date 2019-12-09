@@ -9,11 +9,11 @@ function getMessage(counter) {
 }
 
 const Test = my.Test.Test.extend({
-    invoke() {
-        const val = this.getValue();
+    invoke(arg) {
+        const val = arg.toString();
+        console.log('invoked', val.length);
     }
 });
-
 
 function createViewModel() {
     const viewModel = new Observable();
@@ -23,15 +23,12 @@ function createViewModel() {
         viewModel.set("message", 'running test...');
         let test = new Test();
         global.te = test;
-
-        const inter = setInterval(() => {
-            const val = test.getValue();
-        });
+        test.run();
 
         setTimeout(function () {
             viewModel.set("message", 'click to start');
-            clearInterval(inter);
             delete global.te;
+            test.stop();
             test = null;
         }, 30 * 1000);
     };

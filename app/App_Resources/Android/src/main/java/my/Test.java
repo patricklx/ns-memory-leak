@@ -2,13 +2,14 @@ package my.Test;
 
 public class Test {
     private java.util.Timer timer;
+
     public void run() {
-        timer = new java.util.Timer();
+        this.timer = new java.util.Timer();
         Test test = this;
         java.util.TimerTask task = new java.util.TimerTask() {
             @Override
             public void run() {
-                test.invoke();
+                test.invoke(test.getValue());
             }
         };
         timer.scheduleAtFixedRate(task, 0, 5);
@@ -18,18 +19,18 @@ public class Test {
         timer.cancel();
     }
 
-    public void invoke() {
+    public void invoke(StringBuilder arg) {
 
     }
 
-    public byte[] getValue() {
+    public StringBuilder getValue() {
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder builder = new StringBuilder();
-        int count = 50;
+        int count = 10000;
         while (count-- != 0) {
-            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
             builder.append(ALPHA_NUMERIC_STRING.charAt(character));
         }
-        return builder.toString().getBytes();
+        return builder;
     }
 }
